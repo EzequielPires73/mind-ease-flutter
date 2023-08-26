@@ -12,9 +12,16 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  Future<void> handleSubmit() async {
+    if(_formKey.currentState!.validate()) {
+      
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,46 +112,58 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             Center(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
-                width: 500,
-                child: Column(children: [
-                  TextFieldPrimary(controller: emailController, label: 'Nome'),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  TextFieldPrimary(controller: emailController, label: 'Email'),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  TextFieldPrimary(
-                    controller: passwordController,
-                    label: 'Senha',
-                    obscureText: true,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  ButtonPrimary(
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login())),
-                      title: 'Cadastrar'),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Já tem uma conta?'),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      TextButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const Login())), child: const Text('Entrar'))
-                    ],
-                  ),
-                ]),
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+                  width: 500,
+                  child: Column(children: [
+                    TextFieldPrimary(
+                      controller: emailController,
+                      label: 'Nome',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: emailController,
+                      label: 'Email',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: passwordController,
+                      label: 'Senha',
+                      obscureText: true,
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    ButtonPrimary(onPressed: handleSubmit, title: 'Cadastrar'),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Já tem uma conta?'),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        TextButton(
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Login())),
+                            child: const Text('Entrar'))
+                      ],
+                    ),
+                  ]),
+                ),
               ),
             )
           ],

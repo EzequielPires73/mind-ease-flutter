@@ -11,7 +11,7 @@ class VideoPlayerPage extends StatefulWidget {
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
   final VideoPlayerController _controller =
-      VideoPlayerController.asset('assets/videoplayback.mp4');
+      VideoPlayerController.asset('assets/video.mp4');
   Duration? currentPosition;
   Duration? duration;
 

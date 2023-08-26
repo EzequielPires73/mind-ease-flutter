@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:new_app/controllers/auth_controller.dart';
 import 'package:new_app/models/user.dart';
 import 'package:new_app/screens/login.dart';
 import 'package:new_app/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<AuthController>();
+
     final User user = User(
         name: 'Ezequiel Pires',
         email: 'ezequiel.pires082000@gmail.com',
@@ -75,7 +79,7 @@ class Header extends StatelessWidget {
                 child: IconButton(
                   icon: const Icon(FeatherIcons.logOut),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () => controller.logout(),
                 )),
           ))
         ],

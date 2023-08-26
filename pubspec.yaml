@@ -39,6 +39,8 @@ dependencies:
   audioplayers: ^4.1.0
   video_player: ^2.7.0
   flutter_feather_icons: ^2.0.0+1
+  shared_preferences: ^2.2.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
