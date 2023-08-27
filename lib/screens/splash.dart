@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/controllers/auth_controller.dart';
+import 'package:new_app/screens/app.dart';
+import 'package:new_app/screens/login.dart';
+import 'package:new_app/utils/colors.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splash extends StatefulWidget {
@@ -9,30 +14,36 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _checkAuth();
+  late final AuthController controller;
+
+  void authListene() {
+    if(controller.userState == UserState.logged) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const App(),));
+    } else if(controller.userState == UserState.loggedOut) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login(),));
+    }
   }
 
-  Future<void> _checkAuth() async {
-    await Future.delayed(const Duration(seconds: 2));
-    final shared = await SharedPreferences.getInstance();
-    final user = shared.getString('user');
-    if(user == null) {
-      Navigator.of(context).pushReplacementNamed('/login');
-    } else {
-      Navigator.of(context).pushReplacementNamed('/home');
-    }
+  @override
+  void initState() {
+    super.initState();
+    controller = context.read<AuthController>();
+    controller.loadUser();
+    controller.addListener(authListene);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(authListene);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.deepPurple,
+      color: Colors.white,
       alignment: Alignment.center,
-      child: const CircularProgressIndicator(color: Colors.white,),
+      child: const CircularProgressIndicator(color: ColorPalette.primary,),
     );
   }
 }

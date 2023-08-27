@@ -13,11 +13,6 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.watch<AuthController>();
 
-    final User user = User(
-        name: 'Ezequiel Pires',
-        email: 'ezequiel.pires082000@gmail.com',
-        phone: '(64) 99969-8100');
-
     return Container(
       width: double.infinity,
       height: 146,
@@ -35,7 +30,7 @@ class Header extends StatelessWidget {
                 color: ColorPalette.primary,
                 border: Border.all(color: ColorPalette.primary_dark, width: 4)),
             child: Text(
-              user?.name.substring(0, 1) ?? '',
+              controller.user?.name.substring(0, 1) ?? '',
               style: const TextStyle(
                   fontSize: 24,
                   color: Colors.white,
@@ -50,7 +45,7 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Olá, ${user?.name}' ?? '',
+                'Olá, ${controller.user?.name}' ?? '',
                 style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,

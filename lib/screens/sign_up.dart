@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/blocs/users/user_bloc.dart';
+import 'package:new_app/blocs/users/user_events.dart';
+import 'package:new_app/blocs/users/user_states.dart';
+import 'package:new_app/models/user.dart';
 import 'package:new_app/screens/login.dart';
 import 'package:new_app/utils/colors.dart';
 import 'package:new_app/widgets/buttons/button_primary.dart';
@@ -12,14 +16,60 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  late final UserBloc userBloc;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  void _addListen(UserState state) {
+    if (state is UserErrorState) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(state.message),
+        ),
+      );
+    } else if(state is UserSuccessCreateState) {
+       ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text(state.message),
+        ),
+      );
+    }
+    if(state is UserLoadingState && state.isLoading == true) {
+      setState(() {
+        isLoading = true;
+      });
+    } else if(state is UserLoadingState && state.isLoading == false) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userBloc = UserBloc();
+    userBloc.stream.listen(_addListen);
+  }
 
   Future<void> handleSubmit() async {
-    if(_formKey.currentState!.validate()) {
-      
+    if (_formKey.currentState!.validate()) {
+      userBloc.inputClient.add(
+        AddUserEvent(
+          user: User(
+            email: emailController.value.text,
+            name: nameController.value.text,
+            phone: phoneController.value.text,
+            password: passwordController.value.text,
+          ),
+        ),
+      );
     }
   }
 
@@ -119,8 +169,16 @@ class _SignUpState extends State<SignUp> {
                   width: 500,
                   child: Column(children: [
                     TextFieldPrimary(
-                      controller: emailController,
+                      controller: nameController,
                       label: 'Nome',
+                      required: true,
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldPrimary(
+                      controller: phoneController,
+                      label: 'Telefone',
                       required: true,
                     ),
                     const SizedBox(
@@ -143,7 +201,7 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 24,
                     ),
-                    ButtonPrimary(onPressed: handleSubmit, title: 'Cadastrar'),
+                    ButtonPrimary(onPressed: handleSubmit, title: 'Cadastrar', isLoading: isLoading,),
                     const SizedBox(
                       height: 8,
                     ),

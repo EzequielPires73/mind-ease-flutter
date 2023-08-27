@@ -2,36 +2,54 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:new_app/models/user.dart';
+import 'package:new_app/repositories/user_respository.dart';
+import 'package:new_app/services/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthState { idle, success, error, loading }
+
 enum UserState { idle, logged, loggedOut, error }
 
 class AuthController extends ChangeNotifier {
+  final ApiService api = ApiService();
+  late User? user;
   var state = AuthState.idle;
   var userState = UserState.idle;
+
+  Future<void> loadUser() async {
+    final shared = await SharedPreferences.getInstance();
+    final userData = shared.getString('user');
+    if (userData != null) {
+      user = User.fromJson(json.decode(userData));
+      userState = UserState.logged;
+      notifyListeners();
+    } else {
+      userState = UserState.loggedOut;
+      notifyListeners();
+    }
+  }
 
   Future<void> login(String email, String password) async {
     state = AuthState.loading;
     notifyListeners();
 
     try {
-      await Future.delayed(const Duration(seconds: 2));
-      final User user = User(
-          name: 'Ezequiel Pires',
-          email: 'ezequiel.pires082000@gmail.com',
-          phone: '(64) 99969-8100',
-          password: '12345678');
+      var res =
+          await api.post('auth/login', {"email": email, "password": password});
 
-      if (email != user.email || password != user.password) {
+      print(res);
+
+      if (res['statusCode'] == '401' || res['user'] == null) {
         throw Exception('Dados incorretos.');
       }
 
       final shared = await SharedPreferences.getInstance();
-      await shared.setString('user', jsonEncode(user.toString()));
+      await shared.setString('user', jsonEncode(res['user']));
+      user = User.fromJson(res['user']);
       state = AuthState.success;
       notifyListeners();
     } catch (error) {
+      print(error);
       state = AuthState.error;
       notifyListeners();
     }
