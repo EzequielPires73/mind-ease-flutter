@@ -24,6 +24,13 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    userBloc = UserBloc();
+    userBloc.stream.listen(_addListen);
+  }
+
   void _addListen(UserState state) {
     if (state is UserErrorState) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -32,30 +39,18 @@ class _SignUpState extends State<SignUp> {
           content: Text(state.message),
         ),
       );
-    } else if(state is UserSuccessCreateState) {
-       ScaffoldMessenger.of(context).showSnackBar(
+    } else if (state is UserSuccessCreateState) {
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.green,
           content: Text(state.message),
         ),
       );
-    }
-    if(state is UserLoadingState && state.isLoading == true) {
+    } else if (state is UserLoadingState) {
       setState(() {
-        isLoading = true;
-      });
-    } else if(state is UserLoadingState && state.isLoading == false) {
-      setState(() {
-        isLoading = false;
+        isLoading = state.isLoading;
       });
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    userBloc = UserBloc();
-    userBloc.stream.listen(_addListen);
   }
 
   Future<void> handleSubmit() async {
@@ -201,7 +196,11 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(
                       height: 24,
                     ),
-                    ButtonPrimary(onPressed: handleSubmit, title: 'Cadastrar', isLoading: isLoading,),
+                    ButtonPrimary(
+                      onPressed: handleSubmit,
+                      title: 'Cadastrar',
+                      isLoading: isLoading,
+                    ),
                     const SizedBox(
                       height: 8,
                     ),

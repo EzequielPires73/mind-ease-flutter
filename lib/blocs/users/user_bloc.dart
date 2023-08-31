@@ -21,11 +21,11 @@ class UserBloc {
   }
 
   _mapEventsToState(UserEvents event) async {
-    List<User> users = [];
     _outputUserController.add(UserLoadingState(isLoading: true));
     switch (event.runtimeType) {
       case FindUsersEvent:
-        users = _userRepo.findUsers();
+        var users = _userRepo.findUsers();
+        _outputUserController.add(UserSuccessState(users: users));
         break;
       case FindUserByEmailEvent:
         var user =
@@ -47,15 +47,14 @@ class UserBloc {
       case RemoveUserEvent:
         var success = _userRepo.removeUser((event as RemoveUserEvent).user);
         if (success) {
-          users = _userRepo.findUsers();
+          var users = _userRepo.findUsers();
+          _outputUserController.add(UserSuccessState(users: users));
         } else {
           _outputUserController
               .add(UserErrorState(message: 'Usuário não foi encontrado.'));
         }
         break;
     }
-
-    _outputUserController.add(UserSuccessState(users: users));
     _outputUserController.add(UserLoadingState(isLoading: false));
   }
 }
