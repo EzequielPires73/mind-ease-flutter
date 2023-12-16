@@ -44,7 +44,7 @@ class _AppState extends State<App> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: BottomAppBar(  
         height: 72,
         color: Colors.white,
         shadowColor: Colors.black54,

@@ -15,6 +15,7 @@ class AuthController extends ChangeNotifier {
   late User? user;
   var state = AuthState.idle;
   var userState = UserState.idle;
+  var errorMsg = '';
 
   Future<void> loadUser() async {
     final shared = await SharedPreferences.getInstance();
@@ -50,6 +51,7 @@ class AuthController extends ChangeNotifier {
       notifyListeners();
     } catch (error) {
       print(error);
+      errorMsg = error.toString();
       state = AuthState.error;
       notifyListeners();
     }

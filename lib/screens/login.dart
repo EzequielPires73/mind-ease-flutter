@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
   void _authListener() {
     if (controller.state == AuthState.error) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Erro na autenticação.')));
+          .showSnackBar(SnackBar(content: Text(controller.errorMsg)));
     } else if (controller.state == AuthState.success) {
       Navigator.of(context).pushReplacementNamed('/home');
     }

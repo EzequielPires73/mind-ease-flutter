@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class TextFieldPrimary extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final bool obscureText;
   final bool? required;
+  final List<TextInputFormatter>? formatter;
 
   const TextFieldPrimary({
     super.key,
@@ -12,6 +15,7 @@ class TextFieldPrimary extends StatelessWidget {
     required this.label,
     this.obscureText = false,
     this.required,
+    this.formatter
   });
 
   @override
@@ -23,6 +27,7 @@ class TextFieldPrimary extends StatelessWidget {
         }
       },
       controller: controller,
+      inputFormatters: formatter,
       obscureText: obscureText,
       decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(

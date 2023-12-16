@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:new_app/blocs/users/user_bloc.dart';
 import 'package:new_app/blocs/users/user_events.dart';
 import 'package:new_app/blocs/users/user_states.dart';
@@ -23,6 +24,11 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+
+  var phoneNumberFormatter = MaskTextInputFormatter(
+    mask: "(##) #####-####",
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   void initState() {
@@ -175,6 +181,7 @@ class _SignUpState extends State<SignUp> {
                       controller: phoneController,
                       label: 'Telefone',
                       required: true,
+                      formatter: [phoneNumberFormatter],
                     ),
                     const SizedBox(
                       height: 24,

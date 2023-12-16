@@ -12,7 +12,7 @@ class ApiService {
   }
 
   Future<Map<String, dynamic>> post(String path, Object? data) async {
-    print(data);
+    print(Uri.parse(baseUrl + path));
     var response = await http.post(Uri.parse(baseUrl + path), body: data);
 
     return json.decode(response.body);
