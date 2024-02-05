@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:new_app/blocs/users/user_bloc.dart';
-import 'package:new_app/blocs/users/user_events.dart';
-import 'package:new_app/blocs/users/user_states.dart';
-import 'package:new_app/models/user.dart';
-import 'package:new_app/screens/login.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/buttons/button_primary.dart';
-import 'package:new_app/widgets/inputs/text_field_primary.dart';
+import 'package:mind_ease/blocs/users/user_bloc.dart';
+import 'package:mind_ease/blocs/users/user_events.dart';
+import 'package:mind_ease/blocs/users/user_states.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/screens/login.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/buttons/button_primary.dart';
+import 'package:mind_ease/widgets/inputs/text_field_primary.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

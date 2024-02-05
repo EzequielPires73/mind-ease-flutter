@@ -1,6 +1,6 @@
-import 'package:new_app/models/category.dart';
-import 'package:new_app/models/collection.dart';
-import 'package:new_app/models/subcategory.dart';
+import 'package:mind_ease/models/category.dart';
+import 'package:mind_ease/models/collection.dart';
+import 'package:mind_ease/models/subcategory.dart';
 
 List<Category> categories = [
   Category(id: 1, name: "Destaques", subcategories: [

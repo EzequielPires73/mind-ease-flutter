@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/category.dart';
-import 'package:new_app/models/subcategory.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/cards/card_collection.dart';
+import 'package:mind_ease/models/category.dart';
+import 'package:mind_ease/models/subcategory.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/cards/card_collection.dart';
 
 class CategoryView extends StatefulWidget {
   final Subcategory subcategory;
@@ -27,10 +27,11 @@ class _CategoryViewState extends State<CategoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
         foregroundColor: Colors.white,
         title: Text(
           subcategory.name,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white, fontSize: 20),
         ),
         backgroundColor: widget.color ?? ColorPalette.primary,
       ),

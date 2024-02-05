@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/collection.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/cards/card_collection_item.dart';
+import 'package:mind_ease/models/collection.dart';
+import 'package:mind_ease/models/collection_file.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/cards/card_collection_item.dart';
 
 class CardCollection extends StatelessWidget {
   final Collection collection;
@@ -11,13 +12,17 @@ class CardCollection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<CollectionFile> songs =
+        collection.files?.where((e) => e.type == 'audio').toList() ?? [];
+    List<CollectionFile> videos =
+        collection.files?.where((e) => e.type == 'video').toList() ?? [];
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
         IconButton.filled(
-          onPressed: () =>
-              dialogBuilder(context, collection, color ?? ColorPalette.primary),
+          onPressed: () => dialogBuilder(context, collection,
+              color ?? ColorPalette.primary, songs, videos),
           icon: const Icon(Icons.play_arrow_rounded),
           style: ButtonStyle(
               backgroundColor: MaterialStateColor.resolveWith(
@@ -38,7 +43,12 @@ class CardCollection extends StatelessWidget {
 }
 
 Future<void> dialogBuilder(
-    BuildContext context, Collection collection, Color color) {
+  BuildContext context,
+  Collection collection,
+  Color color,
+  List<CollectionFile> songs,
+  List<CollectionFile> videos,
+) {
   return showDialog(
       context: context,
       builder: (context) {
@@ -84,18 +94,26 @@ Future<void> dialogBuilder(
                           height: 248,
                           child: TabBarView(children: [
                             ListView.builder(
-                                itemCount: 5,
+                                itemCount: songs.length,
                                 itemBuilder: (context, index) => Column(
                                       children: [
-                                        CardCollectionItem(color: color, type: 'audio'),
+                                        CardCollectionItem(
+                                          color: color,
+                                          type: 'audio',
+                                          file: songs[index],
+                                        ),
                                         const SizedBox(height: 8),
                                       ],
                                     )),
                             ListView.builder(
-                                itemCount: 5,
+                                itemCount: videos.length,
                                 itemBuilder: (context, index) => Column(
                                       children: [
-                                        CardCollectionItem(color: color, type: 'video',),
+                                        CardCollectionItem(
+                                          color: color,
+                                          type: 'video',
+                                          file: videos[index],
+                                        ),
                                         const SizedBox(height: 8),
                                       ],
                                     )),

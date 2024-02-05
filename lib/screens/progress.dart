@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/headers/progress.dart';
-import 'package:new_app/widgets/swipers/progress.dart';
-import 'package:new_app/widgets/typografy/title.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/headers/progress.dart';
+import 'package:mind_ease/widgets/swipers/progress.dart';
+import 'package:mind_ease/widgets/typografy/title.dart';
 
 class Progress extends StatefulWidget {
   const Progress({super.key});

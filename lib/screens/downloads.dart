@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/cards/card_download.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/cards/card_download.dart';
 
 class Downloads extends StatefulWidget {
   const Downloads({super.key});

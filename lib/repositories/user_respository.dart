@@ -1,5 +1,5 @@
-import 'package:new_app/models/user.dart';
-import 'package:new_app/services/api.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/services/api.dart';
 
 class UserRepository {
   final List<User> _users = [

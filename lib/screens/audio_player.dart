@@ -4,9 +4,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:mind_ease/models/collection_file.dart';
 
 class AudioPlayerPage extends StatefulWidget {
-  const AudioPlayerPage({Key? key}) : super(key: key);
+  final CollectionFile file;
+  const AudioPlayerPage({Key? key, required this.file}) : super(key: key);
 
   @override
   State<AudioPlayerPage> createState() => _AudioPlayerPageState();
@@ -15,11 +17,12 @@ class AudioPlayerPage extends StatefulWidget {
 class _AudioPlayerPageState extends State<AudioPlayerPage> {
   bool isPlaying = false;
   double value = 0;
+  late final CollectionFile file;
   final AudioPlayer player = AudioPlayer();
   Duration? duration = const Duration(seconds: 0);
 
   void initPlayer() async {
-    await player.setSource(AssetSource('forest.mp3'));
+    await player.setSource(UrlSource('http://192.168.0.101:8080/${file.path!}'));
     var d = await player.getDuration();
     player.onPlayerComplete.listen((event) {
       resetValues();
@@ -45,6 +48,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
 
   @override
   void initState() {
+    file = widget.file;
     super.initState();
     initPlayer();
   }
@@ -70,10 +74,9 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 width: double.infinity,
                 height: double.infinity,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
-                            "https://img.freepik.com/vetores-gratis/desenho-plano-desenhado-a-mao-paisagem-montanhosa_23-2149158786.jpg?w=1380&t=st=1688849952~exp=1688850552~hmac=2f82b4437bd6d1c1f58552d33898013073796c331dffd7fbea72a493befa2381"),
+                        image: NetworkImage('http://192.168.0.101:8080/${file.thumbnailPath!}'),
                         fit: BoxFit.cover),
                   ),
                   child: BackdropFilter(
@@ -90,7 +93,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.network(
-                      'https://img.freepik.com/vetores-gratis/desenho-plano-desenhado-a-mao-paisagem-montanhosa_23-2149158786.jpg?w=1380&t=st=1688849952~exp=1688850552~hmac=2f82b4437bd6d1c1f58552d33898013073796c331dffd7fbea72a493befa2381',
+                      'http://192.168.0.101:8080/${file.thumbnailPath!}',
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover),
@@ -98,10 +101,10 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Floresta - Música Ambiente Relaxante",
+                Text(
+                  file.name,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.w600),
@@ -109,9 +112,9 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 const SizedBox(
                   height: 4,
                 ),
-                const Text(
-                  "Lost World",
-                  style: TextStyle(
+                Text(
+                  file.description!,
+                  style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
                       fontWeight: FontWeight.w300),

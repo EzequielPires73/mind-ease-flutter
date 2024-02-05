@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/subcategory.dart';
-import 'package:new_app/screens/category_view.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/models/subcategory.dart';
+import 'package:mind_ease/screens/category_view.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class CardProgress extends StatelessWidget {
   final Subcategory subcategory;

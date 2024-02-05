@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/buttons/button_primary.dart';
-import 'package:new_app/widgets/inputs/text_field_primary.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/buttons/button_primary.dart';
+import 'package:mind_ease/widgets/inputs/text_field_primary.dart';
 
 class UpdateProfile extends StatefulWidget {
   const UpdateProfile({super.key});

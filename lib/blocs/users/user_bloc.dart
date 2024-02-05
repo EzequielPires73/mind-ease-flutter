@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:new_app/blocs/users/user_events.dart';
-import 'package:new_app/blocs/users/user_states.dart';
-import 'package:new_app/models/user.dart';
-import 'package:new_app/repositories/user_respository.dart';
+import 'package:mind_ease/blocs/users/user_events.dart';
+import 'package:mind_ease/blocs/users/user_states.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/repositories/user_respository.dart';
 
 class UserBloc {
   final _userRepo = UserRepository();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/models/user.dart';
-import 'package:new_app/screens/favorites.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/screens/favorites.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class HeaderProgress extends StatelessWidget {
   const HeaderProgress({super.key});

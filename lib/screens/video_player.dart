@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/models/collection_file.dart';
+import 'package:mind_ease/utils/colors.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerPage extends StatefulWidget {
-  const VideoPlayerPage({Key? key}) : super(key: key);
+  final CollectionFile file;
+  const VideoPlayerPage({Key? key, required this.file}) : super(key: key);
 
   @override
   State<VideoPlayerPage> createState() => _VideoPlayerPageState();

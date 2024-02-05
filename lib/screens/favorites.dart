@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/buttons/dropdown.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/buttons/dropdown.dart';
 
 class Favorites extends StatefulWidget {
   const Favorites({super.key});

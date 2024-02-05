@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/screens/home.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/screens/home.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class ButtonPrimary extends StatelessWidget {
   final String title;

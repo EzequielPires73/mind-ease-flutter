@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/controllers/auth_controller.dart';
-import 'package:new_app/screens/app.dart';
-import 'package:new_app/screens/login.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/controllers/auth_controller.dart';
+import 'package:mind_ease/screens/app.dart';
+import 'package:mind_ease/screens/login.dart';
+import 'package:mind_ease/utils/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

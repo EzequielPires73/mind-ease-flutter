@@ -1,37 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/category.dart';
-import 'package:new_app/models/data.dart';
-import 'package:new_app/models/subcategory.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/cards/card_subcategory.dart';
-import 'package:new_app/widgets/typografy/title.dart';
+import 'package:mind_ease/models/category.dart';
+import 'package:mind_ease/models/data.dart';
+import 'package:mind_ease/models/subcategory.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/cards/card_subcategory.dart';
+import 'package:mind_ease/widgets/typografy/title.dart';
 
 class SwiperCategories extends StatelessWidget {
   final int index;
-  const SwiperCategories({super.key, required this.index});
+  final Category category;
+  const SwiperCategories({super.key, required this.category, required this.index});
 
-  String findTitle(int index) {
-    String title = '';
-
-    switch (index) {
-      case 0:
-        title = 'Destaques';
-        break;
-      case 1:
-        title = 'Técnicas de respiração';
-        break;
-      case 2:
-        title = 'Sons para dormir';
-        break;
-      case 3:
-        title = 'Técnicas de Mindfulness';
-        break;
-    }
-
-    return title;
-  }
-
-  Color findColor(int index) {
+  Color findColor() {
     Color? color;
 
     switch (index) {
@@ -54,8 +34,7 @@ class SwiperCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Category category = categories[index];
-    List<Subcategory>? subcategories = categories[index].subcategories;
+    List<Subcategory>? subcategories = category.subcategories;
 
     if (subcategories == null) {
       return Container();
@@ -85,7 +64,7 @@ class SwiperCategories extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: CardCategory(
                             subcategory: subcategories[index_],
-                            color: findColor(index),
+                            color: findColor(),
                             filled: subcategories.length > 1 ? false : true,
                           ));
                     } else {
@@ -93,7 +72,7 @@ class SwiperCategories extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
                           child: CardCategory(
                             subcategory: subcategories[index_],
-                            color: findColor(index),
+                            color: findColor(),
                           ));
                     }
                   },
@@ -103,7 +82,7 @@ class SwiperCategories extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: CardCategory(
                       subcategory: subcategories[0],
-                      color: findColor(index),
+                      color: findColor(),
                       filled: subcategories.length > 1 ? false : true,
                     ))),
       ],

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/screens/home.dart';
+import 'package:mind_ease/screens/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_app/screens/profile.dart';
-import 'package:new_app/screens/progress.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/screens/profile.dart';
+import 'package:mind_ease/screens/progress.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -47,9 +47,10 @@ class _AppState extends State<App> {
       bottomNavigationBar: BottomAppBar(  
         height: 72,
         color: Colors.white,
-        shadowColor: Colors.black54,
+        shadowColor: Colors.black,
         surfaceTintColor: Colors.white,
         notchMargin: 10,
+        elevation: 10,
         child: SizedBox(
           height: 60,
           child: Row(

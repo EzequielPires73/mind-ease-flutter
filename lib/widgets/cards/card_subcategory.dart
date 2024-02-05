@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/category.dart';
-import 'package:new_app/models/subcategory.dart';
-import 'package:new_app/screens/category_view.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/models/category.dart';
+import 'package:mind_ease/models/subcategory.dart';
+import 'package:mind_ease/screens/category_view.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class CardCategory extends StatelessWidget {
   final Subcategory subcategory;
@@ -21,11 +21,16 @@ class CardCategory extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           child: InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CategoryView(subcategory: subcategory, color: color,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CategoryView(
+                            subcategory: subcategory,
+                            color: color,
+                          )));
             },
             child: Container(
-                constraints: const BoxConstraints(maxHeight: 104),
+                constraints: const BoxConstraints(maxHeight: 116),
                 width: screenWidth - 32,
                 decoration: BoxDecoration(
                   color: color ?? ColorPalette.primary,
@@ -90,34 +95,36 @@ class CardCategory extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(
+                          Image.network(
                             subcategory.image,
                             filterQuality: FilterQuality.high,
                             width: 80,
                             height: 80,
                           ),
                           const SizedBox(width: 10),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                subcategory.name,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
-                              ),
-                              const Text(
-                                '5 seções',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.white),
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  subcategory.name,
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                                const Text(
+                                  '5 seções',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -130,8 +137,13 @@ class CardCategory extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         child: InkWell(
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CategoryView(subcategory: subcategory, color: color,)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CategoryView(
+                          subcategory: subcategory,
+                          color: color,
+                        )));
           },
           child: Container(
               height: 183,
@@ -197,7 +209,7 @@ class CardCategory extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Image.asset(
+                      Image.network(
                         subcategory.image,
                         filterQuality: FilterQuality.high,
                         width: 80,
@@ -207,8 +219,9 @@ class CardCategory extends StatelessWidget {
                       Text(
                         subcategory.name,
                         textAlign: TextAlign.center,
+                        maxLines: 2,
                         style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.w500,
                             color: Colors.white),
                       ),

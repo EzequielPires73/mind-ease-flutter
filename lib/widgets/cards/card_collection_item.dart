@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/screens/audio_player.dart';
-import 'package:new_app/screens/video_player.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/models/collection_file.dart';
+import 'package:mind_ease/screens/audio_player.dart';
+import 'package:mind_ease/screens/video_player.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class CardCollectionItem extends StatelessWidget {
   final Color? color;
   final String type;
-  const CardCollectionItem({super.key, required this.type, this.color});
+  final CollectionFile file;
+  const CardCollectionItem({super.key, required this.type, required this.file, this.color,});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class CardCollectionItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: GestureDetector(
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => type == 'audio' ? const AudioPlayerPage() : const VideoPlayerPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => type == 'audio' ? AudioPlayerPage(file: file,) : VideoPlayerPage(file: file,)));
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -25,7 +27,7 @@ class CardCollectionItem extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(type == 'audio' ? 'Audio 10 min' : 'Vídeo 10 min',
+                  Text(file.name,
                       style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.w500)),
                   const Row(

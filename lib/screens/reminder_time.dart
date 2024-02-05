@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class ReminderTime extends StatefulWidget {
   const ReminderTime({super.key});

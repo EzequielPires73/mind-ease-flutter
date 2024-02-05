@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/typografy/title.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/typografy/title.dart';
 
 class About extends StatefulWidget {
   const About({super.key});

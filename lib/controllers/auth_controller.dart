@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:new_app/models/user.dart';
-import 'package:new_app/repositories/user_respository.dart';
-import 'package:new_app/services/api.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/repositories/user_respository.dart';
+import 'package:mind_ease/services/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum AuthState { idle, success, error, loading }

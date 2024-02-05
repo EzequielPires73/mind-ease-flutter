@@ -1,4 +1,4 @@
-import 'package:new_app/models/user.dart';
+import 'package:mind_ease/models/user.dart';
 
 abstract class UserEvents {}
 

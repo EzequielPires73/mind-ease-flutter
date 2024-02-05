@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/controllers/auth_controller.dart';
-import 'package:new_app/screens/app.dart';
-import 'package:new_app/screens/home.dart';
-import 'package:new_app/screens/sign_up.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/buttons/button_primary.dart';
-import 'package:new_app/widgets/inputs/text_field_primary.dart';
+import 'package:mind_ease/controllers/auth_controller.dart';
+import 'package:mind_ease/screens/app.dart';
+import 'package:mind_ease/screens/home.dart';
+import 'package:mind_ease/screens/sign_up.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/buttons/button_primary.dart';
+import 'package:mind_ease/widgets/inputs/text_field_primary.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {

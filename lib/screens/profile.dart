@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/screens/about.dart';
-import 'package:new_app/screens/downloads.dart';
-import 'package:new_app/utils/colors.dart';
-import 'package:new_app/widgets/headers/default.dart';
-import 'package:new_app/widgets/headers/profile.dart';
-import 'package:new_app/widgets/pickers/time_picker.dart';
-import 'package:new_app/widgets/typografy/title.dart';
+import 'package:mind_ease/screens/about.dart';
+import 'package:mind_ease/screens/downloads.dart';
+import 'package:mind_ease/utils/colors.dart';
+import 'package:mind_ease/widgets/headers/default.dart';
+import 'package:mind_ease/widgets/headers/profile.dart';
+import 'package:mind_ease/widgets/pickers/time_picker.dart';
+import 'package:mind_ease/widgets/typografy/title.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

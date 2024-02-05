@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/utils/colors.dart';
 
 class CardDownload extends StatelessWidget {
   const CardDownload({super.key});

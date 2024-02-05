@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_app/models/data.dart';
-import 'package:new_app/widgets/cards/card_progress.dart';
+import 'package:mind_ease/models/data.dart';
+import 'package:mind_ease/widgets/cards/card_progress.dart';
 
 class SwiperProgress extends StatelessWidget {
   const SwiperProgress({super.key});

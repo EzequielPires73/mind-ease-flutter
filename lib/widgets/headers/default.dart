@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:new_app/controllers/auth_controller.dart';
-import 'package:new_app/models/user.dart';
-import 'package:new_app/screens/login.dart';
-import 'package:new_app/utils/colors.dart';
+import 'package:mind_ease/controllers/auth_controller.dart';
+import 'package:mind_ease/models/user.dart';
+import 'package:mind_ease/screens/login.dart';
+import 'package:mind_ease/utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
