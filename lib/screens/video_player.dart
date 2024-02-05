@@ -12,8 +12,7 @@ class VideoPlayerPage extends StatefulWidget {
 }
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
-  final VideoPlayerController _controller =
-      VideoPlayerController.asset('assets/video.mp4');
+  late final VideoPlayerController _controller;
   Duration? currentPosition;
   Duration? duration;
 
@@ -32,15 +31,20 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   void initState() {
     super.initState();
-    _controller.initialize().then((_) => setState(() {
-          duration = _controller.value.duration;
-        }));
-    _controller.addListener(() {
-      setState(() {
-        currentPosition = _controller.value.position;
+    if (widget.file.path != null) {
+      _controller =
+          VideoPlayerController.networkUrl(Uri.parse(widget.file.path!));
+
+      _controller.initialize().then((_) => setState(() {
+            duration = _controller.value.duration;
+          }));
+      _controller.addListener(() {
+        setState(() {
+          currentPosition = _controller.value.position;
+        });
       });
-    });
-    _controller.setLooping(true);
+      _controller.setLooping(true);
+    }
   }
 
   @override
@@ -61,37 +65,63 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         child: Column(
           children: [
             _controller.value.isInitialized
-                ? AspectRatio(
+                ? Expanded(
+                    child: AspectRatio(
                     aspectRatio: _controller.value.aspectRatio,
                     child: VideoPlayer(_controller),
-                  )
+                  ))
                 : Container(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(formatDuration(currentPosition)),
-                Slider(
-                  value: currentPosition != null
-                      ? currentPosition!.inSeconds.toDouble()
-                      : 0.0,
-                  min: 0.0,
-                  max: duration != null ? duration!.inSeconds.toDouble() : 0.0,
-                  onChanged: (value) {
-                    setState(() {
-                      currentPosition = Duration(seconds: value.toInt());
-                      _controller.seekTo(Duration(seconds: value.toInt()));
-                    });
-                  },
-                  activeColor: ColorPalette.forest,
-                  inactiveColor: ColorPalette.forest.withOpacity(.2),
-                ),
-                Text(formatDuration(duration)),
-              ],
-            )
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      });
+                    },
+                    backgroundColor: ColorPalette.forest,
+                    child: Icon(
+                      _controller.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Text(formatDuration(currentPosition)),
+                  Expanded(
+                    child: Slider(
+                      value: currentPosition != null
+                          ? currentPosition!.inSeconds.toDouble()
+                          : 0.0,
+                      min: 0.0,
+                      max: duration != null
+                          ? duration!.inSeconds.toDouble()
+                          : 0.0,
+                      onChanged: (value) {
+                        setState(() {
+                          currentPosition = Duration(seconds: value.toInt());
+                          _controller.seekTo(Duration(seconds: value.toInt()));
+                        });
+                      },
+                      activeColor: ColorPalette.forest,
+                      inactiveColor: ColorPalette.forest.withOpacity(.2),
+                    ),
+                  ),
+                  Text(formatDuration(duration)),
+                ],
+              ),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
             _controller.value.isPlaying
@@ -103,7 +133,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         child: Icon(
           _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
-      ),
+      ), */
     );
   }
 }

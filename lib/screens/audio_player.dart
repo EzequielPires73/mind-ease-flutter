@@ -22,7 +22,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
   Duration? duration = const Duration(seconds: 0);
 
   void initPlayer() async {
-    await player.setSource(UrlSource('http://192.168.0.101:8080/${file.path!}'));
+    await player.setSource(UrlSource(file.path!));
     var d = await player.getDuration();
     player.onPlayerComplete.listen((event) {
       resetValues();
@@ -76,7 +76,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage('http://192.168.0.101:8080/${file.thumbnailPath!}'),
+                        image: NetworkImage(file.thumbnailPath!),
                         fit: BoxFit.cover),
                   ),
                   child: BackdropFilter(
@@ -93,7 +93,7 @@ class _AudioPlayerPageState extends State<AudioPlayerPage> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.network(
-                      'http://192.168.0.101:8080/${file.thumbnailPath!}',
+                      file.thumbnailPath!,
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover),

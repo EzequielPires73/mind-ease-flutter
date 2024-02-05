@@ -21,7 +21,7 @@ class Subcategory {
     return Subcategory(
       id: json['id'],
       name: json['name'],
-      image: 'http://192.168.0.101:8080/${json['image']}',
+      image: 'http://192.168.0.21:8080/${json['image']}',
       collections: collections
     );
   }

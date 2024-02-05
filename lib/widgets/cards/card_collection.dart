@@ -16,6 +16,7 @@ class CardCollection extends StatelessWidget {
         collection.files?.where((e) => e.type == 'audio').toList() ?? [];
     List<CollectionFile> videos =
         collection.files?.where((e) => e.type == 'video').toList() ?? [];
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
@@ -49,6 +50,7 @@ Future<void> dialogBuilder(
   List<CollectionFile> songs,
   List<CollectionFile> videos,
 ) {
+
   return showDialog(
       context: context,
       builder: (context) {
