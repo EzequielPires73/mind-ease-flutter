@@ -29,7 +29,7 @@ class CardProgress extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(6),
         child: Container(
-            height: 183,
+            height: 200,
             width: 160,
             decoration: BoxDecoration(
               color: ColorPalette.primary,
@@ -103,7 +103,7 @@ class CardProgress extends StatelessWidget {
                       subcategory.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
                     ),

@@ -17,13 +17,18 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) {
     if (json['avatar'] != null) {
       return User(
+          id: json['id'],
           name: json['name'],
           email: json['email'],
           phone: json['phone'],
           avatar: json['avatar']);
     } else {
       return User(
-          name: json['name'], email: json['email'], phone: json['phone']);
+        id: json['id'],
+        name: json['name'],
+        email: json['email'],
+        phone: json['phone'],
+      );
     }
   }
 }

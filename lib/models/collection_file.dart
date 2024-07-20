@@ -23,8 +23,8 @@ class CollectionFile {
       name: json['name'],
       type: json['type'],
       description: json['description'],
-      path: json['path'] != null ? 'http://192.168.0.21:8080/${json['path']}' : null,
-      thumbnailPath: json['thumbnail_path'] != null ? 'http://192.168.0.21:8080/${json['thumbnail_path']}' : null,
+      path: json['path'] != null ? 'http://192.168.0.102:8080/${json['path']}' : null,
+      thumbnailPath: json['thumbnail_path'] != null ? 'http://192.168.0.102:8080/${json['thumbnail_path']}' : null,
     );
   }
 }
