@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:mind_ease/blocs/users/user_events.dart';
 import 'package:mind_ease/blocs/users/user_states.dart';
-import 'package:mind_ease/models/user.dart';
 import 'package:mind_ease/repositories/user_respository.dart';
 
 class UserBloc {

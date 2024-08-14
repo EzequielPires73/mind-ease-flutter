@@ -1,6 +1,4 @@
 import 'package:mind_ease/models/collection_file.dart';
-import 'package:mind_ease/models/song.dart';
-import 'package:mind_ease/models/video.dart';
 
 class Collection {
   int id;
