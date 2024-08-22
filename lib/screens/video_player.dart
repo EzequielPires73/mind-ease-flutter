@@ -73,14 +73,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         }
       });
     }
-
-
-
-
-
-
-
-    
   }
 
   @override
@@ -157,7 +149,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   }
 }
 
-Future<void> sendProgress(int userId, String accessToken, int fileId, double progress) async {
+Future<void> sendProgress(
+    int userId, String accessToken, int fileId, double progress) async {
   try {
     final url = '${ApiService().baseUrl}user-file-progress/$fileId/progress';
     final response = await http.patch(
