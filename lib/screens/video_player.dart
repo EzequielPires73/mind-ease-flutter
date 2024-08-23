@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:mind_ease/controllers/auth_controller.dart';
 import 'package:mind_ease/models/collection_file.dart';
@@ -20,6 +21,7 @@ class VideoPlayerPage extends StatefulWidget {
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
   late final VideoPlayerController _controller;
   late final AuthController _authController;
+  late final CollectionFile file;
   Duration? currentPosition;
   Duration? duration;
   Timer? _timer;
@@ -39,6 +41,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   void initState() {
     super.initState();
+    file = widget.file;
     _authController = context.read<AuthController>();
     if (widget.file.path != null) {
       _controller =
@@ -56,7 +59,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           currentPosition = _controller.value.position;
         });
       });
-      //_controller.setLooping(true);
     }
   }
 
@@ -87,21 +89,62 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
-        title: const Text('Diminuir o Stress'),
+        title: Text(file.name),
         backgroundColor: const Color(0XFF15AAAB),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            _controller.value.isInitialized
-                ? Expanded(
-                    child: AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  ))
-                : Container(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          // Exibe a thumbnail como fundo
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(file.thumbnailPath!),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 28, sigmaY: 28),
+                child: Container(
+                  color: Colors.black54,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 80,
+            ),
+            child: Center(
+              child: _controller.value.isInitialized
+                  ? Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        ),
+                        // Exibe a thumbnail enquanto o vídeo não começa a tocar
+                        if (!_controller.value.isPlaying)
+                          Image.network(
+                            file.thumbnailPath!,
+                            fit: BoxFit.cover,
+                          ),
+                      ],
+                    )
+                  : // Exibe a thumbnail antes do vídeo carregar
+                  Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.network(file.thumbnailPath!),
+                        const CircularProgressIndicator(),
+                      ],
+                    ),
+            ),
+          ),
+        ],
       ),
       bottomSheet: BottomAppBar(
         child: Row(

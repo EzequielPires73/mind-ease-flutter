@@ -115,10 +115,10 @@ class CardCategory extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white),
                                 ),
-                                const Text(
-                                  '5 seções',
+                                Text(
+                                  '${subcategory.collections?.length ?? 0} seções',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w300,
                                       color: Colors.white),
@@ -228,10 +228,10 @@ class CardCategory extends StatelessWidget {
                       Expanded(
                           child: Container(
                         alignment: Alignment.bottomCenter,
-                        child: const Text(
-                          '5 seções',
+                        child: Text(
+                          '${subcategory.collections?.length ?? 0} seções',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w300,
                               color: Colors.white),
