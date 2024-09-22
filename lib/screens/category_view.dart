@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mind_ease/models/category.dart';
 import 'package:mind_ease/models/subcategory.dart';
 import 'package:mind_ease/utils/colors.dart';
 import 'package:mind_ease/widgets/cards/card_collection.dart';

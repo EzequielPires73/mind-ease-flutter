@@ -3,6 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mind_ease/controllers/auth_controller.dart';
 import 'package:mind_ease/models/user.dart';
 import 'package:mind_ease/screens/login.dart';
+import 'package:mind_ease/screens/profile.dart';
 import 'package:mind_ease/utils/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -21,20 +22,29 @@ class Header extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 56,
-            height: 56,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(56),
-                color: ColorPalette.primary,
-                border: Border.all(color: ColorPalette.primary_dark, width: 4)),
-            child: Text(
-              controller.user?.name.substring(0, 1) ?? '',
-              style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+          InkWell(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Profile(),
+              ),
+            ),
+            child: Container(
+              width: 56,
+              height: 56,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(56),
+                  color: ColorPalette.primary,
+                  border:
+                      Border.all(color: ColorPalette.primary_dark, width: 4)),
+              child: Text(
+                controller.user?.name.substring(0, 1) ?? '',
+                style: const TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           const SizedBox(

@@ -27,13 +27,16 @@ class _UpdateProfileState extends State<UpdateProfile> {
         title: const Text('Editar perfil'),
       ),
       backgroundColor: Colors.white,
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: ButtonPrimary(onPressed: () => Navigator.pop(context), title: 'Salvar'),
+      bottomSheet: BottomAppBar(
+        color: Colors.white,
+        child: ButtonPrimary(
+          onPressed: () => Navigator.pop(context),
+          title: 'Salvar',
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
               const SizedBox(
@@ -44,13 +47,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
               const SizedBox(
                 height: 24,
               ),
-              TextFieldPrimary(
-                  controller: phone, label: 'Telefone'),
+              TextFieldPrimary(controller: phone, label: 'Telefone'),
               const SizedBox(
                 height: 24,
               ),
-              TextFieldPrimary(
-                  controller: email, label: 'Email'),
+              TextFieldPrimary(controller: email, label: 'Email'),
             ],
           ),
         ),
